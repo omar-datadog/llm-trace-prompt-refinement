@@ -1,36 +1,46 @@
 <PROMPT1>
-    You are going to write a summary for a potential issue in a Datadog dashboard. Your output will be in JSON format.
+You are going to write a summary for a potential issue in a Datadog dashboard.
 
-  Summarize this anomaly issue in a structured, scannable format. Bold key scope indicators (service names, cells, clusters, metric types). Output ONLY these three sections (TIME, ONE-LINER, DETAILS) with NO additional commentary, analysis, or notes or  preamble (do not say "based on the data... for example, just give me the structured output below").
+Summarize this anomaly issue in a structured, scannable format. Bold key scope indicators (service names, cells, clusters, metric types). Output ONLY these three sections (TIME, ONE-LINER, DETAILS) with no additional commentary, analysis, or notes or preamble (do not say "based on the data... for example, just give me the structured output below").
 
+Output format:
+TIME: [start] to [end] ([duration])
+ONE-LINER: [One super-short sentence describing scope - e.g., "Kafka lag across 3 cells" or "Network saturation on bond cluster"]. Do not mention more than 2 items, if there are more that are relevant to the scope generalize it.
 
-  Output format:
-  TIME: [start] to [end] ([duration])
-  ONE-LINER: [One super-short sentence describing scope - e.g., "Kafka lag across 3 cells" or "Network saturation on bond cluster"]
-  SUMMARY: [One detailed sentence explaining the pattern]
-  DETAILS:
-  - [Bullet 1: Primary issue - keep it short and focused]
-  - [Bullet 2: Secondary impacts - avoid listing more than 3-4 items]
-  - [Bullet 3: Notable context - one clear point]
-  Limit to exactly 3 bullets. Keep each bullet SHORT and scannable - avoid long lists or complex sentences. Group related information but don't cram too much into one bullet.
+DETAILS:
+In **exactly three bullets**:
+- **Bullet 1** (MAX 10 WORDS): What shifted - the primary metric change with direction
+- **Bullet 2** (MAX 10 WORDS): Why it matters - the operational impact or consequence
+- **Bullet 3** (MAX 10 WORDS): What to investigate - specific action or check for SRE
 
+Each bullet should be 7-10 words ideal. Do not literally say "what shifted" etc as a header, just provide the information. For instantaneous anomalies (single timestamp), include "instantaneous" or "instant" in bullet 1. DO NOT INCLUDE ANY SPECULATIVE INFORMATION, ONLY DEFINITIVE INFO.
+
+## Bullet 3 Investigation Guidelines
+
+The third bullet should tell the SRE what to check, review, or investigate. Examples:
+- "Check [specific component] health and [related metric]"
+- "Review [service] logs for [specific error pattern]"
+- "Investigate [upstream/downstream dependency] performance"
+- "Verify [configuration] settings on [affected scope]"
+
+Be specific with scope (org_id, cluster, service, pod) when relevant. Focus on the most logical first investigation step based on the anomaly type.
 
 
 </PROMPT1>
 
 <PROMPT2>
-    You are going to write a summary for a potential issue in a Datadog dashboard.
+  You are going to write a summary for a potential issue in a Datadog dashboard.
 
-  Summarize this anomaly issue in a structured, scannable format. Bold key scope indicators (service names, cells, clusters, metric types). Output ONLY these three sections (TIME, ONE-LINER, DETAILS) with no additional commentary, analysis, or notes or  preamble (do not say "based on the data... for example, just give me the structured output below").
+  Summarize this anomaly issue in a structured, scannable format. Bold key scope indicators (service names, cells, clusters, metric types). Output ONLY these three sections (TIME, ONE-LINER, DETAILS) with no additional commentary, analysis, or notes or preamble (do not say "based on the data... for example, just give me the structured output below").
 
   Output format:
   TIME: [start] to [end] ([duration])
   ONE-LINER: [One super-short sentence describing scope - e.g., "Kafka lag across 3 cells" or "Network saturation on bond cluster"]. Do not mention more than 2 items, if there are more that are relevant to the scope generalize it.
+
   DETAILS:
-  - [Bullet 1: Primary issue - keep it short and focused]
-  - [Bullet 2: Secondary impacts - avoid listing more than 3-4 items]
-  - [Bullet 3: Notable context - one clear point]
-  Limit to exactly 3 bullets. Keep each bullet SHORT and scannable - avoid long lists or complex sentences. Group related information but don't cram too much into one bullet.
+  In **MAX three bullets that are MAX 12 WORDS per bullet**: what shifted, who/what it touches, and why it matters. Two bullets ideal, 7-9 words ideal. Do not literally say "what shifted" etc as a header, just explain what actually shifted for ex. Group related information but don't cram too much into one bullet.
+  - For instantaneous anomalies (single timestamp), include "instantaneous" or "instant" in first bullet
+  DO NOT INCLUDE ANY SPECULATIVE INFORMATION, ONLY DEFINITIVE INFO.
 
    
 
