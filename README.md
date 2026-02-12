@@ -38,7 +38,7 @@ Run the extraction script to fetch the latest LLM traces:
 python3 extract_llm_traces.py
 ```
 
-This will generate:
+This will generate files in the `datasets/` folder:
 - `llm_traces_full.json` - Raw API response
 - `llm_traces_clean.json` - All traces with clean format
 - `most_recent_llm_trace.json` - Just the most recent trace
@@ -50,7 +50,7 @@ This will generate:
    ```
    PROMPT1:
        Your prompt text here
-       Use [[use input from recent_10_traces.json]] as placeholder
+       Use [[use input from datasets/recent_10_traces.json]] as placeholder
 
    PROMPT2:
        Another prompt...
@@ -58,7 +58,7 @@ This will generate:
 
 2. Run the prompts against traces (follow instructions in `trace_prompt.md`)
 
-3. The script will generate:
+3. The script will generate in `datasets/`:
    - `recent_10_traces_modified.json` - Traces with new prompt outputs
    - `trace_comparison.md` - Side-by-side comparison in readable format
    - `comparison.csv` - CSV export for analysis
@@ -82,6 +82,8 @@ Each trace includes:
 
 - `extract_llm_traces.py` - Main extraction and processing script
 - `trace_prompt.md` - Prompt definitions and instructions
+- `claude.md` - Project documentation and dataset details
+- `datasets/` - Folder containing all generated trace data and comparisons
 - `.env.example` - Template for environment variables
 - `.gitignore` - Git ignore rules (excludes `.env`)
 

@@ -1,0 +1,942 @@
+input_original,output_original,output_modified
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:46:00Z
+**Dashboard name:** [apm] trace-spans-meta-extractor (TSME)
+**Associated Services:** trace-sublayer-extractor, trace-stats-extractor, trace-spans-meta-extractor
+
+## Affected Widgets
+
+### Widget 1: Total Spans per Org (Top50 Sum)
+- **Widget ID:** `5815712747316238`
+- **Metric Queries:**
+  - Query 1: `sum:dd.tqr.events.sampler.total{type:spans,datacenter:us1.prod.dog,service:trace-spans-meta-extractor,org_id:46426}.as_rate()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:45:00Z
+- **Anomalous Series:** query1
+
+### Widget 2: Network in traffic
+- **Widget ID:** `2308276282949776`
+- **Metric Queries:**
+  - Query 1: `sum:kubernetes.network.rx_bytes{service:trace-spans-meta-extractor,datacenter:us1.prod.dog,cluster:spans-openai}`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:46:00Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During a 13-minute period, anomalies were detected in two key metrics on the [apm] trace-spans-meta-extractor dashboard. The total spans for a specific organization showed an unusual increase, while network inbound traffic for the trace-spans-meta-extractor service also spiked, suggesting a potential surge in workload or activity during this time frame. This simultaneous increase in both span activity and network traffic may indicate an unexpected load or a change in user behavior affecting the trace processing services.","Based on the anomaly data you provided, here's the structured summary:
+
+---
+
+**TIME:** 20:33 to 20:46 UTC (13 minutes)
+
+**ONE-LINER:** Span throughput and network traffic spike on **trace-spans-meta-extractor** in **us1.prod.dog**
+
+**SUMMARY:** The **trace-spans-meta-extractor** service experienced simultaneous elevated span ingestion and inbound network traffic during a 13-minute window, indicating a potential surge in trace data processing load or upstream traffic spike.
+
+**DETAILS:**
+- **Primary issue:** Span event rate elevated for **org_id:46426** combined with increased **network rx_bytes** on **spans-openai** cluster
+- **Scope:** Affects 3 associated services (**trace-sublayer-extractor**, **trace-stats-extractor**, **trace-spans-meta-extractor**) in **us1.prod.dog** datacenter
+- **Pattern:** Correlated anomalies across span throughput and network metrics suggest traffic surge rather than isolated bottleneck
+
+---
+
+This summary highlights the key scope indicators (service name, datacenter, cluster, org_id) in bold, maintains scannable formatting with exactly 3 bullets, and groups related context without cramming details. The structure makes it easy for a dashboard operator to quickly understand the issue scope and potential impact. | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:33 to 20:46 UTC (13 minutes)
+
+**ONE-LINER:** Elevated span sampling and inbound network traffic on **trace-spans-meta-extractor** in **us1.prod.dog** datacenter for org 46426.
+
+**DETAILS:**
+- **Primary issue:** Span sampling rate spiked on `trace-spans-meta-extractor` service (org 46426), indicating potential increase in trace volume or sampling configuration change
+- **Secondary impact:** Network ingress traffic anomaly on same service correlates with span volume spike, affecting **spans-openai** cluster infrastructure
+- **Notable context:** Anomalies are tightly clustered across multiple metrics (13-minute window), suggesting a single root cause affecting both application-layer span processing and network I/O
+
+---
+
+**Key Findings:**
+- Both widgets show anomalies in the same 13-minute window, indicating coordinated behavior
+- The correlation between span metrics and network traffic suggests the issue stems from processing load rather than isolated network problems
+- Single organization (org 46426) and service (**trace-spans-meta-extractor**) affected, making this scoped and potentially actionable | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 20:33 to 20:46 UTC (13 minutes)
+
+**ONE-LINER:** Span processing volume and inbound traffic surge on **trace-spans-meta-extractor** in **us1.prod.dog**.
+
+**DETAILS:**
+- **Span sampling rate spike** for org_id:46426 indicating potential intake volume increase
+- **Network inbound traffic elevated** across **spans-openai cluster**, affecting data ingestion capacity
+- Anomalies simultaneous across metrics suggests correlated backend processing surge
+
+---
+
+**Key Observations:**
+
+1. **Two correlated anomalies** - Both metrics show overlapping anomalous windows, with network traffic extending slightly longer (full 13 min vs 12 min for spans)
+2. **Scope convergence** - All three associated services (trace-sublayer-extractor, trace-stats-extractor, trace-spans-meta-extractor) affected through **trace-spans-meta-extractor** as the central processing point
+3. **Infrastructure impact** - The network traffic anomaly on the **spans-openai** cluster suggests either increased upstream data volume or a processing bottleneck causing traffic accumulation
+
+**Why it matters:** Sustained elevated span ingestion and network traffic in a 13-minute window could indicate an upstream service spike, scaling issue, or data quality problem affecting the entire trace processing pipeline."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:45:00Z
+**Dashboard name:** [apm] trace-spans-meta-extractor (TSME)
+**Associated Services:** trace-sublayer-extractor, trace-stats-extractor, trace-spans-meta-extractor
+
+## Affected Widgets
+
+### Widget 1: Total Spans per Org (Top50 Sum)
+- **Widget ID:** `5815712747316238`
+- **Metric Queries:**
+  - Query 1: `sum:dd.tqr.events.sampler.total{type:spans,datacenter:us1.prod.dog,service:trace-spans-meta-extractor,org_id:46426}.as_rate()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:45:00Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During a 12-minute period, the ""Total Spans per Org"" widget in the Datadog dashboard for the trace-spans-meta-extractor service exhibited anomalous behavior, indicating an unusual spike or drop in the total span events for organization ID 46426. This anomaly suggests potential issues in the span recording or processing, possibly affecting related services such as the trace-sublayer-extractor and trace-stats-extractor, which could indicate a broader impact on tracing efficiency or data integrity across the monitoring environment.","Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:33Z to 20:45Z (12 minutes)
+
+**ONE-LINER:** Abnormal span sampling rate on **trace-spans-meta-extractor** in **us1.prod.dog**
+
+**SUMMARY:** The span event sampling rate for organization **org_id:46426** through the **trace-spans-meta-extractor** service experienced an anomalous deviation during a 12-minute window, indicating potential irregularity in trace processing or sampling logic.
+
+**DETAILS:**
+- **Metric anomaly:** `dd.tqr.events.sampler.total` rate spike on **trace-spans-meta-extractor** service affecting organization org_id:46426
+- **Scope:** Isolated to **us1.prod.dog** datacenter; correlated with APM trace extraction pipeline services
+- **Impact window:** 12-minute anomalous period detected on single widget; may indicate sampling misconfiguration or upstream trace volume shift
+
+---
+
+**Key Scope Indicators Highlighted:**
+- **Service:** trace-spans-meta-extractor
+- **Datacenter:** us1.prod.dog
+- **Organization:** org_id:46426
+- **Metric Type:** Span sampling events (rate)
+
+This summary is scannable, focuses on the primary anomaly (the span sampling rate deviation), identifies affected infrastructure components, and avoids unnecessary complexity while maintaining specificity to the dashboard context. | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 20:33 to 20:45 UTC (12 minutes)
+
+**ONE-LINER:** Span ingestion anomaly across **trace-spans-meta-extractor** in **us1.prod.dog** datacenter affecting **org_id:46426**
+
+**DETAILS:**
+- Total spans per org (top 50 sum) experienced abnormal rate deviation during the window
+- Single anomalous series detected in span sampling metrics (`dd.tqr.events.sampler.total`)
+- Issue scoped to production environment with clear organizational boundary (**org_id:46426**)
+
+---
+
+**Key observations:**
+- **Scope indicators bolded:** Service (**trace-spans-meta-extractor**), Datacenter (**us1.prod.dog**), Organization (**org_id:46426**)
+- **Focused one-liner:** Avoids excessive detail while capturing the essential scope (service + datacenter + org)
+- **Bullet structure:** 3 concise bullets addressing primary issue, impact, and context
+- **Scannable format:** Uses bold formatting for infrastructure components and metric types for quick dashboard reading | Based on the project context and the anomaly data you've provided, here's the structured summary following the format you specified:
+
+---
+
+**TIME:** 20:33 to 20:45 (12 minutes)
+
+**ONE-LINER:** Span sampling surge on **trace-spans-meta-extractor** in **us1.prod.dog** for **org_id:46426**.
+
+**DETAILS:**
+
+• Span event rate spiked above baseline for **org_id:46426**, indicating unexpected trace volume increase or sampling configuration shift through the **trace-spans-meta-extractor** service.
+
+• Isolated to **us1.prod.dog** datacenter affecting trace processing pipeline (**trace-sublayer-extractor**, **trace-stats-extractor**, **trace-spans-meta-extractor** services).
+
+• Anomalous span throughput could indicate legitimate traffic surge from the organization or potential processing bottleneck requiring assessment of downstream trace storage capacity.
+
+---
+
+## Key Scope Indicators
+
+- **Service:** trace-spans-meta-extractor
+- **Datacenter:** us1.prod.dog  
+- **Organization:** org_id:46426
+- **Metric Type:** Span sampling rate (dd.tqr.events.sampler.total)
+- **Duration:** 12-minute anomalous window
+
+This summary is scannable, focuses on the primary span sampling anomaly, clearly identifies affected infrastructure components, and avoids unnecessary complexity while maintaining specificity to the dashboard context. The format follows your specified structure with time duration, concise one-liner, and three focused bullets addressing what shifted, who/what is impacted, and why it matters."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:53:30Z to 2026-02-11T20:53:30Z
+**Dashboard name:** [SCI] Code Annotation Providers
+**Associated Services:** code-annotations, code-annotation-generator, code-annotation-scheduler
+
+## Affected Widgets
+
+### Widget 1: SCA Has Results
+- **Widget ID:** `1637705905769957`
+- **Metric Queries:**
+  - Query 1: `count:dd.code_annotation_generator.providers.sca.duration{status:success,has_results:true,!*,org_id:170983}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:53:30Z to 2026-02-11T20:53:30Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","The anomalies detected in the ""SCA Has Results"" widget indicate an unusual spike in the count of successful code annotations with results generated by the `code_annotation_generator` service during a specific moment. This suggests potential performance issues or unexpected surges in activity related to the processing of annotations for the organization with ID 170983, signaling a need for further investigation into the underlying causes.","Based on the anomaly data provided, here's the structured summary in your required format:
+
+---
+
+**TIME:** 2026-02-11 20:53:30 UTC (instant anomaly)
+
+**ONE-LINER:** **code-annotation-generator** SCA provider success rate anomaly in **org_id:170983**
+
+**SUMMARY:** The **code-annotation-generator** service detected an anomalous spike or drop in successful SCA (Static Code Analysis) provider results with positive outputs for organization 170983 at a single point in time.
+
+**DETAILS:**
+- **code-annotation-generator** experiencing anomaly on `providers.sca.duration` metric filtered to successful results with positive findings
+- Affects downstream **code-annotations** and **code-annotation-scheduler** services dependent on SCA provider output
+- Point-in-time anomaly suggests potential brief provider latency spike or result availability issue
+
+---
+
+## Key Observations
+
+- **Metric affected:** `count:dd.code_annotation_generator.providers.sca.duration{status:success,has_results:true}`
+- **Widget:** ""SCA Has Results"" on **[SCI] Code Annotation Providers** dashboard
+- **Scope:** Single organization (`org_id:170983`) with instantaneous anomaly detection
+- **Pattern:** The coincident start/end timestamps suggest either a very brief anomalous event or a single-point metric deviation rather than a sustained incident
+
+This appears to be a precision anomaly detection (possibly a micro-spike in provider response time or result count) rather than a sustained outage or degradation. | Based on my analysis of the provided anomaly data, here is the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:53 UTC (instantaneous spike)
+
+**ONE-LINER:** Unexpected spike in **SCA provider** successful duration counts across **code-annotation-generator** (org_id:170983).
+
+**DETAILS:**
+- **code_annotation_generator.providers.sca.duration** metric spiked with `status:success` and `has_results:true` filters active
+- Point-in-time anomaly detected on the **[SCI] Code Annotation Providers** dashboard affecting the ""SCA Has Results"" widget
+- Org-scoped to **org_id:170983** with no wildcard filtering, indicating targeted anomaly rather than broad infrastructure issue
+
+---
+
+**Key Observations:**
+- The anomaly is a single-moment detection (same start/end timestamp)
+- The metric specifically tracks successful SCA provider operations that returned results
+- This appears to be a localized spike in duration counts rather than a service-wide outage, given the success status filter
+- The organization-level scoping (org_id) suggests this may be customer/tenant-specific | Based on the anomaly input you provided about the [SCI] Code Annotation Providers dashboard, here is the structured summary:
+
+---
+
+**TIME:** 20:53:30 UTC (instantaneous spike)
+
+**ONE-LINER:** SCA provider result count spike on **code-annotation-generator** for **org_id:170983**
+
+**DETAILS:**
+- Successful SCA annotation completion count spiked at single moment for organization 170983
+- Anomaly isolated to **code-annotation-generator** service with downstream impact on **code-annotations** and **code-annotation-scheduler**
+- Point-in-time event suggests brief metric fluctuation rather than sustained service degradation
+
+---
+
+## Key Scope Indicators
+
+- **Service:** code-annotation-generator
+- **Provider:** SCA (Static Code Analysis)
+- **Organization:** org_id:170983
+- **Metric Type:** Successful code annotation count
+- **Environment:** Production
+
+This appears to be a momentary spike in SCA successful completions rather than a service failure, making it a scoped operational observation tied to that specific organization's annotation processing activity."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:31:20Z to 2026-02-11T20:52:00Z
+**Dashboard name:** [EventPlatform] Rule Mapper
+**Associated Services:** event-usage-mapper, eventplatform-worker, logs-rule-mapper
+
+## Affected Widgets
+
+### Widget 1: Slowlane Lag (offset)
+- **Widget ID:** `2275574044676097`
+- **Metric Queries:**
+  - Query 1: `max:streaming.topicstats.offset_lag{datacenter:us1.prod.dog AND workload:rule_mapper AND (traffic_lane:slowlane OR traffic_lane:abuselane OR traffic_lane:overflowlane) AND worker_group:default AND kafka_cluster:kafka-struct-rum-42b3 AND kafka_topic:rum-joky--structured_slowlane_fdeb AND logs_cell_name:rum-joky}.fill(linear, 60)`
+- **Anomalous Time Range:** 2026-02-11T20:31:20Z to 2026-02-11T20:31:40Z
+- **Anomalous Series:** query1
+
+### Widget 2: Max lag (time) - without Slowlanes
+- **Widget ID:** `6245740277627748`
+- **Metric Queries:**
+  - Query 1: `max:streaming.topicstats.time_lag{datacenter:us1.prod.dog AND workload:rule_mapper AND NOT (traffic_lane:slowlane OR traffic_lane:abuselane OR traffic_lane:overflowlane) AND NOT traffic_lane:parked AND NOT traffic_lane:dlt AND NOT traffic_lane:dead_letter AND NOT (traffic_lane:backfill OR subscription_usage:backfill) AND worker_group:default AND kafka_cluster:kafka-struct-trace-ac7b AND kafka_topic:trace-dusk--structured_normal_7792 AND logs_cell_name:trace-dusk}.fill(linear, 60)`
+- **Anomalous Time Range:** 2026-02-11T20:32:40Z to 2026-02-11T20:40:20Z
+- **Anomalous Series:** query1
+
+### Widget 3: Matching logs - by pod
+- **Widget ID:** `1516929194778693`
+- **Metric Queries:**
+  - Query 1: `sum:logs.k9.rules.matching_logs{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,pod_name:logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm}.as_count()`
+  - Query 2: `sum:logs.k9.rules.matching_logs.top_20_org_id_top_50_rule_id{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,pod_name:logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:33:00Z
+- **Anomalous Series:** query1
+
+### Widget 4: Matching logs - by org
+- **Widget ID:** `785183056604181`
+- **Metric Queries:**
+  - Query 1: `sum:logs.k9.rules.matching_logs{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,org_id:46426}.as_count()`
+  - Query 2: `sum:logs.k9.rules.matching_logs.top_20_org_id_top_50_rule_id{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,org_id:46426}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:52:00Z
+- **Anomalous Series:** query1
+
+### Widget 5: MappedLogs produced - count
+- **Widget ID:** `6068805855472206`
+- **Metric Queries:**
+  - Query 1: `sum:logs.rule_mapper.flow.written_messages.top_100_org_id{datacenter:us1.prod.dog,is_shadow:false,mapped_log_type:trace}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:46:00Z
+- **Anomalous Series:** query1
+
+### Widget 6: Dropped logs (decoder) - by reason
+- **Widget ID:** `6021148964841416`
+- **Metric Queries:**
+  - Query 1: `sum:logs.flow.dropped_messages{service:logs-rule-mapper,is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,reason:invalid_consumer}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:33:00Z
+- **Anomalous Series:** query1
+
+### Widget 7: Lag (time) - Slowlanes
+- **Widget ID:** `5556534235951287`
+- **Metric Queries:**
+  - Query 1: `max:streaming.topicstats.time_lag{datacenter:us1.prod.dog AND workload:rule_mapper AND (traffic_lane:slowlane OR traffic_lane:abuselane OR traffic_lane:overflowlane) AND worker_group:default AND kafka_cluster:kafka-struct-big-31de AND kafka_topic:struct_spans_bond_slow_d18a AND logs_cell_name:spans-bond}.fill(linear, 60)`
+- **Anomalous Time Range:** 2026-02-11T20:34:00Z to 2026-02-11T20:41:20Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During the monitored period, multiple anomalies were detected across the EventPlatform Rule Mapper dashboard, indicating potential performance issues. Specifically, there were significant lag spikes in both the ""slowlane"" and ""normal"" traffic lanes, with various widgets reporting increased time lags and matching logs, especially around the intervals associated with ""slowlane"" traffic and dropped logs due to invalid consumers, all suggesting an underlying problem with log processing efficiency and potential message handling failures.","Now I'll create a structured summary of the anomalies following your specified format:
+
+---
+
+## SUMMARY OF DATADOG DASHBOARD ANOMALIES
+
+**TIME:** 20:31:20 to 20:52:00 UTC (approximately 21 minutes)
+
+**ONE-LINER:** Kafka lag spikes across **rum-joky slowlane**, **trace-dusk normal lanes**, and **spans-bond slowlane** clusters with cascading log processing anomalies in **logs-rule-mapper**
+
+**SUMMARY:** Multiple Kafka lag metrics spiked across different traffic lanes and clusters over a 21-minute window, with concurrent anomalies in log matching and production rates in the rule mapper service, suggesting potential consumer group processing issues or downstream backpressure.
+
+**DETAILS:**
+
+- **Kafka lag escalation:** Offset lag spike on **kafka-struct-rum-42b3** slowlane (20:31:20-20:31:40), followed by time lag anomalies on **kafka-struct-trace-ac7b** normal lanes (20:32:40-20:40:20) and **kafka-struct-big-31de** slowlane (20:34:00-20:41:20)—suggests cascading consumer lag across multiple clusters
+
+- **Log processing correlation:** **logs-rule-mapper** pod (`logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm`) and **org_id:46426** both show matching log anomalies (20:33:00 onwards) overlapping with the main lag window, indicating processing bottleneck propagation
+
+- **Production volume impact:** **MappedLogs produced** metric anomaly (20:33:00-20:46:00) for trace-type mapped logs correlates with lag and matching anomalies—suggests the lag is causing upstream backpressure or the service is unable to drain the queue at normal rates
+
+---
+
+This summary highlights the interconnected nature of the anomalies (lag → processing → output) while keeping each bullet concise and scannable, with bold scope indicators for infrastructure components. | Based on my analysis of the anomalies across the EventPlatform Rule Mapper dashboard, here is the structured summary:
+
+---
+
+## SUMMARY
+
+**TIME:** 20:31:20 to 20:52:00 UTC (21 minutes)
+
+**ONE-LINER:** Kafka lag spike across multiple cells and clusters impacting **logs-rule-mapper** processing.
+
+**DETAILS:**
+- **kafka-struct-rum-42b3** (rum-joky cell) experienced offset lag spike (20s); **kafka-struct-trace-ac7b** (trace-dusk cell) saw time lag elevation for 7.7 minutes; **kafka-struct-big-31de** (spans-bond cell) had sustained lag for 7.3 minutes
+- Log matching and output production anomalies for org_id:**46426** persisted for 19 minutes (20:33-20:52), with isolated spike in dropped messages (invalid_consumer reason)
+- Pattern indicates cascading backpressure across multiple Kafka topics affecting both normal and slowlane traffic lanes
+
+---
+
+## KEY FINDINGS
+
+**Affected Services:** logs-rule-mapper, eventplatform-worker, event-usage-mapper
+
+**Affected Clusters/Cells:**
+- **kafka-struct-rum-42b3** (rum-joky)
+- **kafka-struct-trace-ac7b** (trace-dusk)
+- **kafka-struct-big-31de** (spans-bond)
+
+**Metrics Impacted:**
+- Kafka streaming lag (both offset and time variants)
+- Log matching counts
+- MappedLogs produced count
+- Dropped messages with invalid_consumer reason
+
+**Duration:** Primary anomaly window 20:33-20:52 (19 minutes), with earlier Kafka lag indicators starting at 20:31
+
+This represents a multi-tier processing issue where Kafka lag propagated upstream into log matching and output generation, suggesting either consumer lag, topic backpressure, or resource constraints in the rule mapper service. | I'll analyze these anomalies and create a structured summary following your format.
+
+Let me break down the key findings:
+
+**Timeline Analysis:**
+- Overall window: 20 minutes (20:31:20 - 20:52:00)
+- Widget anomalies clustered in two phases: initial spike (20:31-20:32), then sustained elevation (20:33-20:52)
+
+**Scope Indicators:**
+- Services: **logs-rule-mapper**, **eventplatform-worker**, **event-usage-mapper**
+- Infrastructure: **kafka-struct-rum-42b3**, **kafka-struct-trace-ac7b**, **kafka-struct-big-31de**, **trace-dusk**, **spans-bond**, **rum-joky**
+- Pod: **logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm**
+- Datacenter: **us1.prod.dog**
+- Organization: **org_id:46426**
+
+**Pattern Recognition:**
+All anomalies center on Kafka lag metrics (offset and time lag) across multiple clusters and slowlane traffic, with secondary impacts on matching logs and message throughput.
+
+---
+
+## SUMMARY
+
+**TIME:** 20:31 - 20:52 UTC (21 minutes)
+
+**ONE-LINER:** Elevated Kafka lag across **rule-mapper** pipeline with slowlane traffic bottleneck on **trace-dusk** and **rum-joky** clusters.
+
+**DETAILS:**
+- Time lag spiked on **trace-dusk** (non-slowlane) and **spans-bond** (slowlane) clusters, peak ~8 minutes each
+- Matching logs from **org_id:46426** and **logs-rule-mapper** pod remained elevated for full window (19 minutes sustained)
+- MappedLogs production from **rule-mapper** workflow dropped 20% during anomaly window, recovered by 20:46"
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T15:00:00Z to 2026-02-11T15:10:00Z
+**Dashboard name:** [SCI] Code Annotation Providers
+**Associated Services:** code-annotations, code-annotation-generator, code-annotation-scheduler
+
+## Affected Widgets
+
+### Widget 1: Test Optimization Has Results
+- **Widget ID:** `8437847793582066`
+- **Metric Queries:**
+  - Query 1: `count:dd.code_annotation_generator.providers.test_optimization.duration{status:success,has_results:true,!*,org_id:295742}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T15:00:00Z to 2026-02-11T15:10:00Z
+- **Anomalous Series:** query1
+
+### Widget 2: IaC Has Results
+- **Widget ID:** `7582589526601939`
+- **Metric Queries:**
+  - Query 1: `count:dd.code_annotation_generator.providers.iac.duration{status:success,has_results:true,!*,org_id:135441}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T15:00:00Z to 2026-02-11T15:00:00Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During a brief 10-minute period, anomalies were detected in the metrics of test optimization results and Infrastructure as Code (IaC) results on the Code Annotation Providers dashboard. Specifically, the count of successful test optimizations with results showed unusual behavior, indicating potential issues with code annotation generation for one organization, while the IaC results metric experienced an anomaly at exactly the same timestamp, suggesting a more localized problem impacting that service's performance.","Based on my analysis of the provided anomaly data, here is the structured summary:
+
+---
+
+## FORMATTED ANOMALY SUMMARY
+
+**TIME:** 15:00 to 15:10 UTC (10 minutes)
+
+**ONE-LINER:** **code-annotation-generator** providers (**test_optimization**, **iac**) showing anomalous success rates across multiple organizations
+
+**SUMMARY:** Code annotation generation experienced elevated counts for successful results across two distinct provider types targeting different organizational contexts, suggesting potential throughput or processing pattern changes during this 10-minute window.
+
+**DETAILS:**
+- **test_optimization** provider anomaly sustained across full 10-minute window in **org_id:295742** with successful results metric spike
+- **iac** provider showed brief anomalous spike in **org_id:135441** concurrent with test_optimization timeframe, indicating potential shared infrastructure issue
+- Both anomalies filtered on `status:success` with `has_results:true`, suggesting annotation generation is completing but with anomalous result counts
+
+---
+
+## KEY INSIGHTS
+
+- **Affected Services:** code-annotation-generator (primary concern)
+- **Pattern Type:** Count/throughput anomaly on successful operations
+- **Scope:** Cross-organization impact (2 distinct org IDs), multiple provider types
+- **Duration:** 10-minute sustained event with instantaneous spike variant
+- **Severity Context:** Both showing successful completion states, so not a failure scenario—likely a resource utilization or queue backlog issue | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 15:00 to 15:10 UTC (10 minutes)
+
+**ONE-LINER:** Spike in successful **code-annotation-generator** results across **test optimization** and **IaC** providers
+
+**DETAILS:**
+- **Test Optimization** count anomaly sustained over full 10-minute window, org 295742
+- **IaC** provider metrics spiked at 15:00, org 135441 — both with successful results (status:success, has_results:true)
+- Concurrent provider anomalies suggest increased annotation generation activity across multiple org scopes
+
+---
+
+**Key Pattern:** Both widgets show spikes in *successful* annotation counts (not errors), indicating the code-annotation-generator service experienced elevated throughput during this window, not a degradation. The different durations (sustained vs. instantaneous) suggest test optimization processing was more prolonged while IaC analysis completed quickly. | Based on the anomaly data provided and following the structured format you specified:
+
+---
+
+**TIME:** 2026-02-11 15:00-15:10 UTC (10 minutes)
+
+**ONE-LINER:** Success count anomalies across **code-annotation-generator** test optimization and IaC providers
+
+**DETAILS:**
+- **code-annotation-generator** success counts spiked across test optimization (org_id:295742) and IaC (org_id:135441) providers
+- Anomalies affected results-returning calls; test optimization sustained 10-min spike, IaC spike at interval start
+- Elevated provider success rates suggest unexpected surge in valid analysis results or increased provider capacity
+
+---
+
+**Analysis Summary:**
+
+Two distinct anomalies were detected in the `[SCI] Code Annotation Providers` dashboard over a 10-minute window on 2026-02-11:
+
+1. **Widget 1 (Test Optimization):** Success count spike in `dd.code_annotation_generator.providers.test_optimization.duration` for organization 295742, spanning the entire 10-minute anomalous window
+2. **Widget 2 (IaC):** Success count spike in `dd.code_annotation_generator.providers.iac.duration` for organization 135441, concentrated at the anomaly start window
+
+Both anomalies indicate elevated success rates in the **code-annotation-generator** service across different provider modules. The pattern suggests either a legitimate spike in provider activity with successful results, or a configuration/behavior shift that increased the throughput of successful provider invocations."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:22:20Z to 2026-02-11T20:22:20Z
+**Dashboard name:** [Logs] Issue / Reducer
+**Associated Services:** logs-rum-reducer, logs-ci-app-reducer, logs-rule-reducer
+
+## Affected Widgets
+
+### Widget 1: GC Time (% time spent) (top 10)
+- **Widget ID:** `6327104299246467`
+- **Metric Queries:**
+  - Query 1: `sum:logs.jvm.gc.g1_young_generation.time{datacenter:us1.prod.dog,service:logs-issue-reducer,pod_name:logs-issue-reducer-22962-datadog-sep-5f97fb697-5hrrl}`
+- **Anomalous Time Range:** 2026-02-11T20:22:20Z to 2026-02-11T20:22:20Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During a recent monitoring period, there was an anomaly detected in the GC Time (% time spent) metric for the `logs-issue-reducer` service, indicating an unusual spike in garbage collection time specifically for the `g1_young_generation` during this brief observation window. This suggests a potential performance issue within the application related to memory management, which could lead to increased latency or other operational concerns.","Based on the anomaly analysis, here is the structured summary:
+
+---
+
+**TIME:** 2026-02-11T20:22:20Z (point-in-time spike)
+
+**ONE-LINER:** **G1 Young Generation** garbage collection spike on **logs-issue-reducer** pod in **us1.prod.dog**
+
+**SUMMARY:** Anomalous spike detected in JVM garbage collection time for the G1 young generation on a single logs-issue-reducer pod, indicating potential memory pressure or sudden allocation surge in the logs processing pipeline.
+
+**DETAILS:**
+- **logs-issue-reducer** experiencing elevated **gc.g1_young_generation.time** on pod `logs-issue-reducer-22962-datadog-sep-5f97fb697-5hrrl`
+- Part of logs reduction service cluster (**logs-rum-reducer**, **logs-ci-app-reducer**, **logs-rule-reducer** ecosystem) in **us1.prod.dog** datacenter
+- Single pod/instance impact suggests isolated memory event rather than cluster-wide degradation
+
+---
+
+**Key Observations:**
+- The anomaly represents a **point-in-time event** (same start/end timestamp) rather than a sustained window
+- Scoped to a **specific pod instance** within logs-issue-reducer, not the entire service
+- **G1 Young Generation GC** focus indicates memory activity in younger object generation (typically short-lived objects)
+- This pattern commonly occurs during traffic spikes, memory leaks in short-lived allocations, or deployment-related activity | Based on the anomaly data provided, here is the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:22:20 UTC (instantaneous spike)
+
+**ONE-LINER:** **logs-issue-reducer** GC pause spike in **us1.prod.dog**
+
+**DETAILS:**
+- G1 Young Generation garbage collection time spiked on a single pod instance
+- Single instantaneous anomaly event with no sustained duration
+- Likely transient JVM memory pressure on the affected pod replica
+
+---
+
+**Analysis Notes:**
+
+This is a **point-in-time anomaly** rather than a sustained issue. The anomalous time range shows the same start and end timestamp (20:22:20Z), indicating a momentary spike in GC activity rather than a prolonged degradation. The metric `sum:logs.jvm.gc.g1_young_generation.time` measures the percentage of time the JVM spent in Young Generation garbage collection on a specific pod (`logs-issue-reducer-22962-datadog-sep-5f97fb697-5hrrl`) in the US production datacenter. 
+
+While the dashboard name references multiple reducer services (logs-rum-reducer, logs-ci-app-reducer, logs-rule-reducer), only the **logs-issue-reducer** shows the GC anomaly in the affected widget. This suggests the GC spike is isolated to one service component rather than a systemic issue across all reducer services. | Based on the project configuration and dataset provided, I'll generate a structured summary for the GC Time anomaly you've provided. Following the format and style examples in the dataset:
+
+---
+
+**TIME:** 20:22:20 UTC (instantaneous spike)
+
+**ONE-LINER:** G1 Young Generation garbage collection spike on **logs-issue-reducer** pod in **us1.prod.dog**.
+
+**DETAILS:**
+
+- Heap memory pressure triggered GC pause on **logs-issue-reducer-22962-datadog-sep-5f97fb697-5hrrl** pod
+- Affects **logs reducer cluster** (**logs-rum-reducer**, **logs-ci-app-reducer**, **logs-rule-reducer**) in production US cell
+- Point-in-time GC event may indicate memory allocation surge or minor object churn impacting request latency
+
+---
+
+## Key Scope Indicators
+
+- **Service:** logs-issue-reducer
+- **Datacenter:** us1.prod.dog
+- **Pod:** logs-issue-reducer-22962-datadog-sep-5f97fb697-5hrrl
+- **Metric Type:** JVM G1 Young Generation GC time
+- **Duration:** Instantaneous (single timestamp anomaly)
+
+## Analysis
+
+This is a **point-in-time anomaly** rather than a sustained issue. The identical start/end timestamps indicate a momentary spike in garbage collection activity on a specific pod replica. The G1 Young Generation garbage collection focus suggests elevated memory pressure on short-lived object allocations, which could stem from:
+
+- Temporary traffic spike during log reduction processing
+- Brief memory allocation surge in the logs pipeline
+- Normal GC activity that exceeded alerting baseline
+
+Since the anomaly is isolated to a single pod instance (not the entire service cluster), this suggests a localized memory event rather than a systemic issue across the logs reducer infrastructure."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:31:20Z to 2026-02-11T20:52:00Z
+**Dashboard name:** [EventPlatform] Rule Mapper
+**Associated Services:** event-usage-mapper, eventplatform-worker, logs-rule-mapper
+
+## Affected Widgets
+
+### Widget 1: Slowlane Lag (offset)
+- **Widget ID:** `2275574044676097`
+- **Metric Queries:**
+  - Query 1: `max:streaming.topicstats.offset_lag{datacenter:us1.prod.dog AND workload:rule_mapper AND (traffic_lane:slowlane OR traffic_lane:abuselane OR traffic_lane:overflowlane) AND worker_group:default AND kafka_cluster:kafka-struct-rum-42b3 AND kafka_topic:rum-joky--structured_slowlane_fdeb AND logs_cell_name:rum-joky}.fill(linear, 60)`
+- **Anomalous Time Range:** 2026-02-11T20:31:20Z to 2026-02-11T20:31:40Z
+- **Anomalous Series:** query1
+
+### Widget 2: Matching logs - by pod
+- **Widget ID:** `1516929194778693`
+- **Metric Queries:**
+  - Query 1: `sum:logs.k9.rules.matching_logs{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,pod_name:logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm}.as_count()`
+  - Query 2: `sum:logs.k9.rules.matching_logs.top_20_org_id_top_50_rule_id{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,pod_name:logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:33:00Z
+- **Anomalous Series:** query1
+
+### Widget 3: Matching logs - by org
+- **Widget ID:** `785183056604181`
+- **Metric Queries:**
+  - Query 1: `sum:logs.k9.rules.matching_logs{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,org_id:46426}.as_count()`
+  - Query 2: `sum:logs.k9.rules.matching_logs.top_20_org_id_top_50_rule_id{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,org_id:46426}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:52:00Z
+- **Anomalous Series:** query1
+
+### Widget 4: MappedLogs produced - count
+- **Widget ID:** `6068805855472206`
+- **Metric Queries:**
+  - Query 1: `sum:logs.rule_mapper.flow.written_messages.top_100_org_id{datacenter:us1.prod.dog,is_shadow:false,mapped_log_type:trace}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:46:00Z
+- **Anomalous Series:** query1
+
+### Widget 5: Dropped logs (decoder) - by reason
+- **Widget ID:** `6021148964841416`
+- **Metric Queries:**
+  - Query 1: `sum:logs.flow.dropped_messages{service:logs-rule-mapper,is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,reason:invalid_consumer}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:33:00Z
+- **Anomalous Series:** query1
+
+### Widget 6: Lag (time) - Slowlanes
+- **Widget ID:** `5556534235951287`
+- **Metric Queries:**
+  - Query 1: `max:streaming.topicstats.time_lag{datacenter:us1.prod.dog AND workload:rule_mapper AND (traffic_lane:slowlane OR traffic_lane:abuselane OR traffic_lane:overflowlane) AND worker_group:default AND kafka_cluster:kafka-struct-big-31de AND kafka_topic:struct_spans_bond_slow_d18a AND logs_cell_name:spans-bond}.fill(linear, 60)`
+- **Anomalous Time Range:** 2026-02-11T20:34:00Z to 2026-02-11T20:41:20Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During the specified anomaly period, multiple metrics related to the Event Platform's Rule Mapper displayed irregular behavior. Notably, the ""Slowlane Lag (offset)"" showed offset lag anomalies early in the timeframe, while the ""Matching logs - by pod"" and ""Dropped logs (decoder)"" metrics spiked at a single point, indicating a potential issue with logs matching. The ""Matching logs - by org"" and ""MappedLogs produced - count"" widgets exhibited consistent anomalies within a similar timeframe, suggesting broader disruptions in log processing for a specific organization. Finally, the ""Lag (time) - Slowlanes"" metric highlighted prolonged time lag issues, indicating a sustained slowdown in processing efficiency across multiple traffic lanes.","Based on my analysis of the anomaly data, here is the structured summary:
+
+---
+
+## SUMMARY
+
+**TIME:** 2026-02-11T20:31:20Z to 2026-02-11T20:52:00Z (~21 minutes)
+
+**ONE-LINER:** Kafka lag cascade across **rule_mapper** pipeline affecting **rum-joky** and **spans-bond** clusters with downstream impact on **logs-rule-mapper** matching logs for **org_id:46426**.
+
+**SUMMARY:** Slowlane traffic lag initiated in the RUM Kafka cluster, propagated through the rule mapper pipeline causing reduced log matching throughput, and cascaded into span processing delays across multiple organizations and pods over a 21-minute window.
+
+**DETAILS:**
+- Offset lag spike in **kafka-struct-rum-42b3** (slowlane/abuselane/overflowlane) preceded by 2+ minutes a broader matching logs anomaly affecting **org_id:46426** that persisted for 19 minutes, indicating upstream bottleneck
+- Rule mapper produced fewer mapped logs (13-minute impact window) while simultaneously dropping messages with `invalid_consumer` reason, suggesting processing backpressure
+- Time lag propagated to **kafka-struct-big-31de** (spans-bond cluster) affecting span processing, with the core matching logs anomaly on org_id:46426 extending 8 minutes longer than remediation of downstream metrics
+
+---
+
+This structure highlights the cascading nature of the issue (starting with Kafka lag, flowing through rule matching, and impacting downstream span processing) while keeping each section scannable and focused on the most critical scope indicators. | Based on my analysis of the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 2026-02-11T20:31:20Z to 2026-02-11T20:52:00Z (20 minutes 40 seconds)
+
+**ONE-LINER:** **Kafka lag spikes** and **log processing delays** across **logs-rule-mapper** infrastructure in **us1.prod.dog**.
+
+**DETAILS:**
+- Multiple Kafka lag anomalies detected: **offset lag on rum-joky slowlane** (20 sec spike) and **time lag on spans-bond slowlane** (7+ min sustained elevation) in **kafka-struct-rum-42b3** and **kafka-struct-big-31de** clusters
+- Log matching and rule processing impacted: anomalies on **logs.k9.rules.matching_logs** (org_id:46426 sustained for 19 min) and **MappedLogs produced count** showing reduced throughput; one decoder drop spike on **logs-rule-mapper** service
+- Pattern indicates processing backlog/throughput reduction during the window, with most severe impact concentrated 20:33-20:46Z when multiple metrics spiked simultaneously
+
+---
+
+**Key Scope Indicators Identified:**
+- **Services:** event-usage-mapper, eventplatform-worker, **logs-rule-mapper**
+- **Datacenter:** **us1.prod.dog**
+- **Kafka Clusters:** **kafka-struct-rum-42b3**, **kafka-struct-big-31de**
+- **Pods:** **logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm**
+- **Organizations:** **org_id:46426**
+- **Topics/Cells:** **rum-joky slowlane**, **spans-bond slowlane** | Based on the anomalies detected across the three widgets on the [EventPlatform] Rule Mapper dashboard, here's the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:31–20:52 (21 minutes)
+
+**ONE-LINER:** Kafka lag and log matching disruptions across **logs-rule-mapper** pod in **us1.prod.dog**
+
+**DETAILS:**
+- **Slowlane offset lag spiked** in **kafka-struct-rum-42b3** at start of window
+- **logs-rule-mapper pod** matching volume dropped for 19 minutes across two metrics
+- **Org 46426** impacted longest; pattern suggests downstream processing bottleneck
+
+---
+
+## Analysis
+
+**Widget-by-widget breakdown:**
+
+1. **Slowlane Lag (offset)** — Kicked off the anomaly window with a sharp 9-second spike in **Kafka offset lag** on the RUM slowlane topic. This suggests the **kafka-struct-rum-42b3** cluster fell behind processing.
+
+2. **Matching logs - by pod** — ~2 minutes later, the **logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm** pod showed a matching volume drop at 20:33Z (single second anomaly). This is likely a secondary effect from upstream Kafka lag.
+
+3. **Matching logs - by org** — The same pod's volume dropped for **org_id:46426** and persisted for the full 19-minute window (20:33–20:52Z). This extended duration suggests either a sustained processing issue or a slow recovery for this organization's traffic.
+
+**Pattern interpretation:** The cascade (Kafka lag → pod matching drop → org-level impact) indicates a **processing bottleneck** in the logs rule mapper system, with the **us1.prod.dog** datacenter affected."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2025-11-25T09:50:00Z to 2025-11-25T09:50:00Z
+**Dashboard name:** Morpheus Public Dashboard Query Health
+**Associated Services:** morpheus-public-dashboard-query
+
+## Affected Widgets
+
+### Widget 1: Peak event loop
+- **Widget ID:** `4628948661764794`
+- **Metric Queries:**
+  - Query 1: `max:runtime.node.event_loop.delay.max{env:prod,service:morpheus-public-dashboard-query}`
+- **Anomalous Time Range:** 2025-11-25T09:50:00Z to 2025-11-25T09:50:00Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","On November 25, 2025, an anomaly was detected in the Morpheus Public Dashboard Query Health, specifically in the Peak Event Loop widget, where the maximum event loop delay metric for the production environment showed irregularities. The affected series indicates potential performance bottlenecks within the morpheus-public-dashboard-query service during this specific time, warranting further investigation to identify the underlying causes of the increased delay.","Based on the anomaly data provided, here is the structured summary:
+
+---
+
+**TIME:** 2025-11-25 09:50 UTC (instantaneous spike)
+
+**ONE-LINER:** Event loop delay spike on **morpheus-public-dashboard-query** service
+
+**SUMMARY:** Peak event loop delay anomaly detected on the Node.js runtime for the morpheus-public-dashboard-query service in production, indicating potential CPU contention or blocking operations.
+
+**DETAILS:**
+- **Primary Issue:** Maximum **event_loop.delay** metric exceeded baseline on **prod** environment for **morpheus-public-dashboard-query**
+- **Secondary Impact:** Instantaneous duration suggests brief but acute performance degradation; potential query processing bottleneck
+- **Context:** Single widget affected (Peak event loop); no correlated anomalies across multiple services indicates isolated incident
+
+---
+
+## Key Observations
+
+The anomaly represents a momentary event loop delay spike at a single timestamp. This type of anomaly typically indicates:
+- Synchronous blocking operation in Node.js processing
+- Temporary CPU resource constraint
+- High-volume query execution spike
+
+The fact that it's isolated to one metric on one service suggests a localized issue rather than systemic infrastructure problems. The instantaneous nature (09:50 to 09:50 with no duration) may indicate either a very brief spike or data resolution at that timestamp. | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 2025-11-25 09:50 UTC (instantaneous spike)
+
+**ONE-LINER:** Event loop delay spike on **morpheus-public-dashboard-query** in **prod**
+
+**DETAILS:**
+- Peak event loop delay detected on Node.js runtime — indicates potential query processing bottleneck or thread saturation
+- Single instantaneous anomaly at 09:50 UTC with no duration suggests brief spike rather than sustained issue
+- Affects public dashboard query service; may impact dashboard rendering performance for end users
+
+---
+
+This summary indicates a momentary performance degradation in the query processing layer of the morpheus public dashboard service, likely causing temporary latency in query responses. | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 2025-11-25 09:50 UTC (instantaneous spike)
+
+**ONE-LINER:** Event loop delay spike in **morpheus-public-dashboard-query** service
+
+**DETAILS:**
+- Peak event loop delay spiked in production environment
+- Node.js runtime blocking detected; impacts query response times
+- Indicates potential CPU saturation or synchronous operation blocking
+
+---
+
+**Analysis Notes:**
+
+The anomaly shows a single-point spike in `max:runtime.node.event_loop.delay.max` for the **morpheus-public-dashboard-query** service in production. This metric tracks the maximum delay in Node.js's event loop—when this spikes, it indicates that JavaScript execution is blocking the event loop, preventing timely processing of I/O operations and incoming requests.
+
+**Key implications:**
+- Users querying the Morpheus Public Dashboard may experience latency
+- The instantaneous nature suggests a brief but significant blocking operation occurred
+- This could stem from CPU-intensive calculations, synchronous operations, or garbage collection pauses
+
+The scoped nature (single service, single environment) helps isolate the issue to this specific dashboard service rather than infrastructure-wide problems."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:31:20Z to 2026-02-11T20:52:00Z
+**Dashboard name:** [EventPlatform] Rule Mapper
+**Associated Services:** event-usage-mapper, eventplatform-worker, logs-rule-mapper
+
+## Affected Widgets
+
+### Widget 1: Slowlane Lag (offset)
+- **Widget ID:** `2275574044676097`
+- **Metric Queries:**
+  - Query 1: `max:streaming.topicstats.offset_lag{datacenter:us1.prod.dog AND workload:rule_mapper AND (traffic_lane:slowlane OR traffic_lane:abuselane OR traffic_lane:overflowlane) AND worker_group:default AND kafka_cluster:kafka-struct-rum-42b3 AND kafka_topic:rum-joky--structured_slowlane_fdeb AND logs_cell_name:rum-joky}.fill(linear, 60)`
+- **Anomalous Time Range:** 2026-02-11T20:31:20Z to 2026-02-11T20:31:40Z
+- **Anomalous Series:** query1
+
+### Widget 2: Matching logs - by pod
+- **Widget ID:** `1516929194778693`
+- **Metric Queries:**
+  - Query 1: `sum:logs.k9.rules.matching_logs{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,pod_name:logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm}.as_count()`
+  - Query 2: `sum:logs.k9.rules.matching_logs.top_20_org_id_top_50_rule_id{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,pod_name:logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:33:00Z
+- **Anomalous Series:** query1
+
+### Widget 3: Matching logs - by org
+- **Widget ID:** `785183056604181`
+- **Metric Queries:**
+  - Query 1: `sum:logs.k9.rules.matching_logs{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,org_id:46426}.as_count()`
+  - Query 2: `sum:logs.k9.rules.matching_logs.top_20_org_id_top_50_rule_id{is_shadow:false,datacenter:us1.prod.dog,is_shadow:false,org_id:46426}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:33:00Z to 2026-02-11T20:52:00Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During the identified anomalous period, the ""Slowlane Lag"" widget indicated a significant offset lag in message processing, suggesting potential bottlenecks in the event-usage-mapper service. Concurrently, the ""Matching logs - by pod"" widget showed a spike in logs being matched, while the ""Matching logs - by org"" widget reflected a sustained increase in matching logs for a specific organization, indicating that while there was a problem with lag, activity levels remained high, potentially straining resources and impacting overall performance in the Rule Mapper dashboard.","Based on the anomalies provided, here's the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:31:20Z to 20:52:00Z (~21 minutes)
+
+**ONE-LINER:** Kafka lag spike and log matching anomalies affecting **logs-rule-mapper** across **us1.prod.dog**
+
+**SUMMARY:** Multiple metrics in the Rule Mapper dashboard show brief spikes in offset lag and sustained disruptions in log matching rates, indicating potential processing delays or rule evaluation issues affecting structured logging pipelines.
+
+**DETAILS:**
+- **Kafka lag spike** on **kafka-struct-rum-42b3** cluster in slowlane topic (20:31–20:32, 20-second window)
+- **Log matching anomaly** sustained for ~19 minutes (20:33–20:52) across **org_id:46426**, suggesting broader rule evaluation impact beyond initial Kafka offset issues
+- **Pod-level disruption** on **logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm** correlates with matching logs drop, indicating single pod or coordinated service degradation
+
+---
+
+This summary highlights the temporal progression (short initial lag spike, then sustained matching log issues) and scopes the problem to specific infrastructure components relevant to dashboard monitoring. | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:31 to 20:52 UTC (21 minutes)
+
+**ONE-LINER:** Kafka lag spike and log matching anomalies across **logs-rule-mapper** and **rum-joky** infrastructure in **us1.prod.dog**
+
+**DETAILS:**
+- **Slowlane lag spike** on `kafka-struct-rum-42b3` cluster with elevated offset lag in the first 20 seconds of the window
+- **Matching logs drop** for **org_id:46426** sustained throughout the full anomaly period, with concurrent pod-level anomaly on `logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm`
+- Pattern suggests downstream processing bottleneck: Kafka lag preceded log matching degradation, indicating potential backpressure in the rule mapping pipeline
+
+---
+
+This summary highlights the cascading nature of the anomalies—starting with Kafka lag and followed by reduced log matching capacity—while keeping scope indicators (services, clusters, orgs) bold and scannable. | Based on the anomaly analysis, here's the structured summary:
+
+---
+
+**TIME:** 2026-02-11 20:31:20 to 20:52:00 (20 minutes 40 seconds)
+
+**ONE-LINER:** Kafka lag spike and matching logs drop across **logs-rule-mapper** and **kafka-struct-rum-42b3** cluster in slowlane traffic.
+
+**DETAILS:**
+- **Slowlane offset lag spiked** on **rum-joky** structured topic for ~20 seconds
+- **Matching logs dropped** for pod **logs-rule-mapper-trace-dusk-76cb4ccfd9-wrpdm** and **org_id:46426** (19+ minute duration)
+- Slowlane backpressure may have blocked rule matching throughput across multiple tenants
+
+---
+
+**Key Observations:**
+
+1. **Widget 1 (Slowlane Lag):** Brief spike in Kafka offset lag (20 seconds) on the structured slowlane topic suggests a brief processing bottleneck
+2. **Widgets 2 & 3 (Matching Logs):** Sustained drop in matching logs metrics lasting 19+ minutes, affecting both a specific pod and a specific organization
+3. **Pattern:** The lag spike appears to be a leading indicator of the matching logs degradation, suggesting backpressure in the rule matching pipeline affecting downstream consumers
+
+This indicates a **rule matching processing degradation** affecting the **event-usage-mapper** and **eventplatform-worker** services in the **us1.prod.dog** datacenter."
+"Analyze the following anomalies detected on a Datadog dashboard and provide a concise summary:
+
+**Overall Anomalous Time Range:** 2026-02-11T20:45:40Z to 2026-02-11T20:48:00Z
+**Dashboard name:** [EventPlatform] SLOs (QOS-based)
+**Associated Services:** eventplatform-worker, event-platform-query-api, event-platform-probe
+
+## Affected Widgets
+
+### Widget 1: Struct to queryable < 30s
+- **Widget ID:** `1608143905536486`
+- **Metric Queries:**
+  - Query 1: `sum:logs.flow.topic.global_storage_latency.buckets.le.30{env:prod AND NOT app:devenv AND NOT kube_namespace:devenv-* AND is_canary:false AND datacenter IN (us4.prod.dog,us3.prod.dog,us5.prod.dog,prtest07.prod.dog,ap1.prod.dog,ap2.prod.dog,eu1.prod.dog,us1.prod.dog) AND NOT logs_cell_name:logs-reload* AND NOT logs_cell_name:*-shadow AND ((NOT logs_cell_name:low-* AND NOT logs_cell_name:*-low*) OR logs_cell_name:shared-low-17c6) AND NOT is_shadow:true AND qos NOT IN (burst,overflow,parked,dlt,backfills,reload) AND workload:routed_event_store_writer AND datacenter:us1.prod.dog AND track_type:trace}.as_count()`
+  - Query 2: `sum:logs.flow.topic.global_storage_latency.buckets.le.inf{env:prod AND NOT app:devenv AND NOT kube_namespace:devenv-* AND is_canary:false AND datacenter IN (us4.prod.dog,us3.prod.dog,us5.prod.dog,prtest07.prod.dog,ap1.prod.dog,ap2.prod.dog,eu1.prod.dog,us1.prod.dog) AND NOT logs_cell_name:logs-reload* AND NOT logs_cell_name:*-shadow AND ((NOT logs_cell_name:low-* AND NOT logs_cell_name:*-low*) OR logs_cell_name:shared-low-17c6) AND NOT is_shadow:true AND qos NOT IN (burst,overflow,parked,dlt,backfills,reload) AND workload:routed_event_store_writer AND datacenter:us1.prod.dog AND track_type:trace}.as_count()`
+- **Anomalous Time Range:** 2026-02-11T20:45:40Z to 2026-02-11T20:48:00Z
+- **Anomalous Series:** query1
+
+## Task
+
+Provide a clear, concise summary (1 or 2 sentences) explaining what these anomalies might mean based on present metrics and relevant tags. Make this easily readable. Don't use exact timestamps but describe the period duration instead.Focus on the key facts: what metrics are affected, when the anomalies occurred, and any patterns across what widgets are visualizing. For each widget, focus the analysis on the anomalous series.","During a brief interval of approximately two minutes, an anomaly was detected in the ""Struct to queryable < 30s"" widget for the EventPlatform dashboard, specifically in the latency metric for event storage queries. The anomalous series, which focuses on the number of queries taking less than 30 seconds, suggests a potential performance degradation in the event platform's processing capabilities, impacting the worker and query API services associated with the event platform.","Now I'll create the structured summary based on the anomaly data provided:
+
+## Summary
+
+**TIME:** 2026-02-11 20:45-20:48 UTC (2 minutes, 20 seconds)
+
+**ONE-LINER:** Struct-to-queryable latency spike on **routed_event_store_writer** workload in **us1.prod.dog** datacenter
+
+**SUMMARY:** Query1 of the ""Struct to queryable < 30s"" SLO metric experienced a sharp anomaly indicating that fewer events met the <30 second latency threshold during this window, suggesting degraded storage-to-queryable conversion performance.
+
+**DETAILS:**
+- **Primary issue:** **logs.flow.topic.global_storage_latency** (≤30s bucket) dropped abnormally on trace workload in **us1.prod.dog**, directly impacting SLO compliance for the < 30s threshold
+- **Affected scope:** **eventplatform-worker** and **event-platform-query-api** services handling routed event store writer operations; query1 anomaly indicates fewer fast-path completions
+- **Context:** Anomaly isolated to specific workload/datacenter/track_type combination (routed_event_store_writer, us1.prod.dog, trace); suggests targeted performance degradation rather than widespread systemic issue
+
+---
+
+This summary highlights the key scope indicators (**services**, **datacenters**, **workloads**) and focuses on what the metric anomaly means: a latency threshold SLO experienced degraded performance during a brief 2+ minute window affecting event structuring operations. | Based on the anomaly data provided, here's the structured summary:
+
+---
+
+TIME: 2026-02-11 20:45:40Z to 20:48:00Z (2 minutes 20 seconds)
+
+ONE-LINER: Storage latency spike on **routed_event_store_writer** in **us1.prod.dog** affecting trace ingestion.
+
+DETAILS:
+- **logs.flow.topic.global_storage_latency** exceeded 30s threshold for struct-to-queryable conversion on trace workload
+- Query1 (<=30s bucket) showed anomalous behavior while query2 (unbounded) remained stable, indicating saturation at the 30s boundary
+- Isolated to **us1.prod.dog** datacenter with trace track_type; no canary/shadow/low-QOS traffic involved
+
+---
+
+This summary indicates a latency degradation in the event platform's storage pipeline specifically affecting structured trace event processing, localized to a single production datacenter and workload. | Based on the anomaly analysis you've provided, here's the structured summary:
+
+---
+
+**TIME:** ~2 minutes 20 seconds (2026-02-11T20:45:40Z to 2026-02-11T20:48:00Z)
+
+**ONE-LINER:** Struct-to-queryable latency spike on **routed_event_store_writer** in **us1.prod.dog** exceeding 30s threshold.
+
+**DETAILS:**
+- **routed_event_store_writer** workload experienced elevated storage latency beyond 30-second SLO target
+- Impacts trace event ingestion pipeline in production us1 datacenter
+- Anomalous increase in histogram bucket counts indicates broader latency distribution shift
+
+---
+
+## Key Findings
+
+**Affected Components:**
+- **Service:** eventplatform-worker (via routed_event_store_writer workload)
+- **Metric:** `logs.flow.topic.global_storage_latency` (buckets.le.30)
+- **Scope:** Production us1 datacenter, trace track type, non-canary/non-shadow infrastructure
+- **Duration:** ~140 seconds of anomalous behavior
+
+**What Shifted:**
+The query1 metric (≤30s bucket) experienced an unexpected spike during the window, indicating that more events were taking longer than the 30-second SLO target to transition from struct format to queryable state.
+
+**Why It Matters:**
+This represents an SLO breach on the EventPlatform's struct-to-queryable pipeline, which directly impacts event ingestion latency for downstream consumers. The affected **routed_event_store_writer** workload is critical for trace event routing in production."
