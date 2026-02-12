@@ -151,9 +151,7 @@
         }
 
         .prompt-tooltip-label {
-            font-weight: 600;
-            color: #fff;
-            margin-bottom: 8px;
+            display: none;
         }
 
         .trace-dropdown {
@@ -1004,7 +1002,7 @@
                     }
                     const tooltipViewportTop = wrapRect.top + topPx;
                     const spaceBelow = window.innerHeight - tooltipViewportTop - 24;
-                    tooltip.style.maxHeight = Math.max(200, Math.min(520, spaceBelow)) + 'px';
+                    tooltip.style.maxHeight = Math.max(300, spaceBelow) + 'px';
                     tooltip.hidden = false;
                 });
                 opt.addEventListener('mouseleave', function () {
@@ -1053,7 +1051,11 @@
                 const text = await response.text();
                 const re = new RegExp('<PROMPT' + num + '>([\\s\\S]*?)</PROMPT' + num + '>', 'i');
                 const m = text.match(re);
-                return m ? m[1].trim() : '';
+                if (!m) return '';
+                // Remove leading/trailing whitespace and collapse multiple newlines at the start
+                let content = m[1].trim();
+                content = content.replace(/^\n+/, '');
+                return content;
             } catch (e) {
                 console.error('getPromptContent:', e);
                 return '';
