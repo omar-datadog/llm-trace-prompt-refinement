@@ -30,29 +30,29 @@ DATASETS = PROJECT_ROOT / 'datasets'
 # Update this mapping after spawning agents via Task tool.
 # Format: 'agent_id': (trace_index, prompt_number)
 #
-# 10 traces × 4 prompts = 40 agents
+# 10 traces × 5 prompts = 50 agents
 #
 AGENT_MAPPING = {
-    # Trace 0 (prompt1 updated 2026-02-12)
-    'ae5df6b': (0, 1), 'ad7e040': (0, 2), 'a4e24b9': (0, 3), 'a057b2a': (0, 4),
-    # Trace 1 (prompt1 updated 2026-02-12)
-    'aec9571': (1, 1), 'a9d337c': (1, 2), 'ab8f246': (1, 3), 'af3be3b': (1, 4),
-    # Trace 2 (prompt1 updated 2026-02-12)
-    'a5d3486': (2, 1), 'a93d7a2': (2, 2), 'a37d8f7': (2, 3), 'a4cc3af': (2, 4),
-    # Trace 3 (prompt1 updated 2026-02-12)
-    'af63e33': (3, 1), 'a0c4e35': (3, 2), 'a24362b': (3, 3), 'a1cb546': (3, 4),
-    # Trace 4 (prompt1 updated 2026-02-12)
-    'ae4d0bf': (4, 1), 'a1ebda7': (4, 2), 'a08fe41': (4, 3), 'a947a27': (4, 4),
-    # Trace 5 (prompt1 updated 2026-02-12)
-    'a85cf71': (5, 1), 'ad4f628': (5, 2), 'a6a2b86': (5, 3), 'a8df2a4': (5, 4),
-    # Trace 6 (prompt1 updated 2026-02-12)
-    'abf876d': (6, 1), 'a8330d7': (6, 2), 'a2560dc': (6, 3), 'a8ee598': (6, 4),
-    # Trace 7 (prompt1 updated 2026-02-12)
-    'a059e18': (7, 1), 'ad679f8': (7, 2), 'a1af480': (7, 3), 'a2d69a0': (7, 4),
-    # Trace 8 (prompt1 updated 2026-02-12)
-    'a2a66bd': (8, 1), 'aec0c8d': (8, 2), 'a1a8f55': (8, 3), 'a156f84': (8, 4),
-    # Trace 9 (prompt1 updated 2026-02-12)
-    'a10c561': (9, 1), 'a1744bc': (9, 2), 'a404313': (9, 3), 'a23c42a': (9, 4),
+    # Trace 0 (updated 2026-02-12 - complete pipeline re-run)
+    'ad9268a': (0, 1), 'a0deb0a': (0, 2), 'a7d224b': (0, 3), 'a6bf1ed': (0, 4), 'a2828f5': (0, 5),
+    # Trace 1 (updated 2026-02-12 - complete pipeline re-run)
+    'a390db0': (1, 1), 'a177a46': (1, 2), 'a93f190': (1, 3), 'a741813': (1, 4), 'ad22b75': (1, 5),
+    # Trace 2 (updated 2026-02-12 - complete pipeline re-run)
+    'a211a0e': (2, 1), 'a072aab': (2, 2), 'ae0507f': (2, 3), 'af37efa': (2, 4), 'ab7574e': (2, 5),
+    # Trace 3 (updated 2026-02-12 - complete pipeline re-run)
+    'aed204d': (3, 1), 'ade34dd': (3, 2), 'afb4948': (3, 3), 'acc6716': (3, 4), 'a683820': (3, 5),
+    # Trace 4 (updated 2026-02-12 - complete pipeline re-run)
+    'a10ac2a': (4, 1), 'a33f086': (4, 2), 'a0811f5': (4, 3), 'afb0a34': (4, 4), 'a3c1ddf': (4, 5),
+    # Trace 5 (updated 2026-02-12 - complete pipeline re-run)
+    'a1a3114': (5, 1), 'ae68436': (5, 2), 'a0f2c1b': (5, 3), 'a3c5b0f': (5, 4), 'a09e27c': (5, 5),
+    # Trace 6 (updated 2026-02-12 - complete pipeline re-run)
+    'af0526e': (6, 1), 'ae10815': (6, 2), 'ade3a8d': (6, 3), 'a01a07e': (6, 4), 'aa36ee0': (6, 5),
+    # Trace 7 (updated 2026-02-12 - complete pipeline re-run)
+    'a72f168': (7, 1), 'a3089e0': (7, 2), 'a79fe9e': (7, 3), 'a4eff0f': (7, 4), 'a944b37': (7, 5),
+    # Trace 8 (updated 2026-02-12 - complete pipeline re-run)
+    'aefd0ef': (8, 1), 'a356834': (8, 2), 'ae5fbfe': (8, 3), 'afb0106': (8, 4), 'a0f6e70': (8, 5),
+    # Trace 9 (updated 2026-02-12 - complete pipeline re-run)
+    'adee186': (9, 1), 'a95a2d8': (9, 2), 'a370e8c': (9, 3), 'a6d88cf': (9, 4), 'a1671ac': (9, 5),
 }
 
 # ============================================================================
@@ -132,7 +132,7 @@ def main():
 
     # Initialize output fields (only for missing ones)
     for trace in traces:
-        for i in range(1, 5):
+        for i in range(1, 6):
             field = f'output_new_prompt{i}'
             if field not in trace:
                 trace[field] = ''
@@ -191,8 +191,9 @@ def main():
         p2_len = len(trace.get('output_new_prompt2', ''))
         p3_len = len(trace.get('output_new_prompt3', ''))
         p4_len = len(trace.get('output_new_prompt4', ''))
-        status = '✓' if all([p1_len > 0, p2_len > 0, p3_len > 0, p4_len > 0]) else '✗'
-        print(f'Trace {i}: {status} P1={p1_len:4d} P2={p2_len:4d} P3={p3_len:4d} P4={p4_len:4d}')
+        p5_len = len(trace.get('output_new_prompt5', ''))
+        status = '✓' if all([p1_len > 0, p2_len > 0, p3_len > 0, p4_len > 0, p5_len > 0]) else '✗'
+        print(f'Trace {i}: {status} P1={p1_len:4d} P2={p2_len:4d} P3={p3_len:4d} P4={p4_len:4d} P5={p5_len:4d}')
 
     print("=" * 80)
     print("\nNEXT STEPS:")
