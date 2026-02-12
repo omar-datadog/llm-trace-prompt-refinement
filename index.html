@@ -173,19 +173,17 @@
         }
 
         .trace-dropdown {
-            position: absolute;
-            top: 2px;
-            right: 8px;
-            height: 28px;
+            height: 24px;
             min-width: 68px;
             padding: 0 8px;
-            background: #5a5a5a;
-            border: 1px solid #6a6a6a;
+            background: #f0f0f0;
+            border: 1px solid #d0d0d0;
             border-radius: 4px;
-            color: white;
+            color: #333;
             font-size: 12px;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
+            margin-left: 12px;
         }
 
         /* Left Sidebar */
@@ -449,6 +447,12 @@
             padding: 21px 28px;
             border-bottom: 1px solid #e0e0e0;
             min-height: 24px;
+        }
+
+        .popover-title-row {
+            display: flex;
+            align-items: center;
+            flex: 1;
         }
 
         .popover-title {
@@ -718,9 +722,6 @@
                 <div id="promptTooltipContent"></div>
             </div>
         </div>
-        <select id="traceSelect" class="prompt-dropdown trace-dropdown" title="Select trace (second card shows next or previous)">
-            <option value="0">trace1</option>
-        </select>
     </div>
 
     <!-- Sidebar -->
@@ -804,7 +805,12 @@
     <!-- Issues Popover -->
     <div class="issues-popover" id="issuesPopover">
         <div class="popover-header">
-            <div class="popover-title" id="popoverTitle">Loading...</div>
+            <div class="popover-title-row">
+                <div class="popover-title" id="popoverTitle">Loading...</div>
+                <select id="traceSelect" class="prompt-dropdown trace-dropdown" title="Select trace (second card shows next or previous)">
+                    <option value="0">trace1</option>
+                </select>
+            </div>
             <button type="button" class="popover-close" id="popoverClose" title="Close" aria-label="Close">
                 <span class="material-icons">close</span>
             </button>
