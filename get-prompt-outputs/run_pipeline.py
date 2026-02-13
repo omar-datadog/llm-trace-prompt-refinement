@@ -33,26 +33,26 @@ DATASETS = PROJECT_ROOT / 'datasets'
 # 10 traces × 5 prompts = 50 agents
 #
 AGENT_MAPPING = {
-    # Trace 0 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'ad9268a': (0, 1), 'a0deb0a': (0, 2), 'a7d224b': (0, 3), 'a6bf1ed': (0, 4), 'a51ee27': (0, 5),
-    # Trace 1 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'a390db0': (1, 1), 'a177a46': (1, 2), 'a93f190': (1, 3), 'a741813': (1, 4), 'aaa837a': (1, 5),
-    # Trace 2 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'a211a0e': (2, 1), 'a072aab': (2, 2), 'ae0507f': (2, 3), 'af37efa': (2, 4), 'a531f14': (2, 5),
-    # Trace 3 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'aed204d': (3, 1), 'ade34dd': (3, 2), 'afb4948': (3, 3), 'acc6716': (3, 4), 'ac01683': (3, 5),
-    # Trace 4 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'a10ac2a': (4, 1), 'a33f086': (4, 2), 'a0811f5': (4, 3), 'afb0a34': (4, 4), 'a98233e': (4, 5),
-    # Trace 5 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'a1a3114': (5, 1), 'ae68436': (5, 2), 'a0f2c1b': (5, 3), 'a3c5b0f': (5, 4), 'afb15b4': (5, 5),
-    # Trace 6 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'af0526e': (6, 1), 'ae10815': (6, 2), 'ade3a8d': (6, 3), 'a01a07e': (6, 4), 'afc8f71': (6, 5),
-    # Trace 7 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'a72f168': (7, 1), 'a3089e0': (7, 2), 'a79fe9e': (7, 3), 'a4eff0f': (7, 4), 'ad11d06': (7, 5),
-    # Trace 8 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'aefd0ef': (8, 1), 'a356834': (8, 2), 'ae5fbfe': (8, 3), 'afb0106': (8, 4), 'a3a126c': (8, 5),
-    # Trace 9 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v2)
-    'adee186': (9, 1), 'a95a2d8': (9, 2), 'a370e8c': (9, 3), 'a6d88cf': (9, 4), 'a3c9dfe': (9, 5),
+    # Trace 0 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'ad9268a': (0, 1), 'a0deb0a': (0, 2), 'a7d224b': (0, 3), 'a6bf1ed': (0, 4), 'a37f97b': (0, 5),
+    # Trace 1 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'a390db0': (1, 1), 'a177a46': (1, 2), 'a93f190': (1, 3), 'a741813': (1, 4), 'ac7920c': (1, 5),
+    # Trace 2 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'a211a0e': (2, 1), 'a072aab': (2, 2), 'ae0507f': (2, 3), 'af37efa': (2, 4), 'afa7634': (2, 5),
+    # Trace 3 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'aed204d': (3, 1), 'ade34dd': (3, 2), 'afb4948': (3, 3), 'acc6716': (3, 4), 'a41d95c': (3, 5),
+    # Trace 4 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'a10ac2a': (4, 1), 'a33f086': (4, 2), 'a0811f5': (4, 3), 'afb0a34': (4, 4), 'a05f832': (4, 5),
+    # Trace 5 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'a1a3114': (5, 1), 'ae68436': (5, 2), 'a0f2c1b': (5, 3), 'a3c5b0f': (5, 4), 'a7ffed8': (5, 5),
+    # Trace 6 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'af0526e': (6, 1), 'ae10815': (6, 2), 'ade3a8d': (6, 3), 'a01a07e': (6, 4), 'ab5ae53': (6, 5),
+    # Trace 7 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'a72f168': (7, 1), 'a3089e0': (7, 2), 'a79fe9e': (7, 3), 'a4eff0f': (7, 4), 'a63795c': (7, 5),
+    # Trace 8 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'aefd0ef': (8, 1), 'a356834': (8, 2), 'ae5fbfe': (8, 3), 'afb0106': (8, 4), 'a427a44': (8, 5),
+    # Trace 9 (updated 2026-02-12 - complete pipeline re-run, P5 updated 2026-02-13 v3)
+    'adee186': (9, 1), 'a95a2d8': (9, 2), 'a370e8c': (9, 3), 'a6d88cf': (9, 4), 'ab8c14e': (9, 5),
 }
 
 # ============================================================================
